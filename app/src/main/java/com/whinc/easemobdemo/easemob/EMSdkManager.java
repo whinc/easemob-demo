@@ -7,9 +7,14 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.easemob.EMCallBack;
+import com.easemob.EMEventListener;
+import com.easemob.EMNotifierEvent;
+import com.easemob.EMNotifierEvent.Event;
 import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
+import com.easemob.chat.EMMessage;
+import com.easemob.easeui.controller.EaseUI;
 import com.whinc.easemobdemo.BuildConfig;
 import com.whinc.easemobdemo.easemob.utils.SystemUtils;
 
@@ -17,10 +22,12 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+import de.greenrobot.event.EventBus;
+
 /**
  * Created by Administrator on 2016/1/19.
  */
-public class EMSdkManager implements EMSdk {
+public class EMSdkManager implements EMSdk, EMEventListener{
 	private static final String TAG = "EMSdkManager";
 
     private static EMSdk sEMSdk = new EMSdkManager().newProxy();
@@ -65,6 +72,12 @@ public class EMSdkManager implements EMSdk {
 
 		// 开启SDK日志输出
         EMChat.getInstance().setDebugMode(BuildConfig.DEBUG);
+
+        // 初始化 EaseUI
+        EaseUI.getInstance().init(appContext);
+
+        // 注册事件监听
+        EMChatManager.getInstance().registerEventListener(this);
     }
 
     @Override
@@ -81,27 +94,27 @@ public class EMSdkManager implements EMSdk {
     @Override
 	public void login(String username, String password, final EMCallBack callBack) {
 		EMChatManager.getInstance().login(username, password, new EMCallBack() {
-			@Override
-			public void onSuccess() {
-				mUiHandler.post(new Runnable() {
+            @Override
+            public void onSuccess() {
+                mUiHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         onLoginSuccess();
                         callBack.onSuccess();
                     }
                 });
-			}
+            }
 
-			@Override
-			public void onError(int i, String s) {
-				callBack.onError(i, s);
-			}
+            @Override
+            public void onError(int i, String s) {
+                callBack.onError(i, s);
+            }
 
-			@Override
-			public void onProgress(int i, String s) {
-				callBack.onProgress(i, s);
-			}
-		});
+            @Override
+            public void onProgress(int i, String s) {
+                callBack.onProgress(i, s);
+            }
+        });
 	}
 
     @Override
@@ -113,6 +126,16 @@ public class EMSdkManager implements EMSdk {
 		EMGroupManager.getInstance().loadAllGroups();
 		EMChatManager.getInstance().loadAllConversations();
 	}
+
+    @Override
+    public void onEvent(EMNotifierEvent event) {
+        switch (event.getEvent()) {
+            case EventNewMessage:
+                EMMessage message = (EMMessage) event.getData();
+                EventBus.getDefault().post(message);
+                break;
+        }
+    }
 
     private static class EMSdkInvocationHandler implements InvocationHandler {
 

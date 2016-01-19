@@ -3,16 +3,20 @@ package com.whinc.easemobdemo.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.easemob.chat.EMConversation;
 import com.whinc.easemobdemo.R;
 import com.whinc.easemobdemo.easemob.EMSdkManager;
+import com.whinc.easemobdemo.fragment.ConversationFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements ConversationFragment.EaseConversationListItemClickListener{
 
     public static void start(@NonNull Context context) {
         Intent starter = new Intent(context, MainActivity.class);
@@ -26,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
+
+        // 初始化会话列表
+        initConversationFragment();
     }
 
     @Override
@@ -50,5 +57,25 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initConversationFragment() {
+        FragmentManager fm = getSupportFragmentManager();
+        int id = R.id.conversation_fragment_container;
+        ConversationFragment conversationFragment = (ConversationFragment) fm.findFragmentById(id);
+        if (conversationFragment == null) {
+            conversationFragment = new ConversationFragment();
+            conversationFragment.setConversationListItemClickListener(this);
+            fm.beginTransaction().add(id, conversationFragment).commit();
+        }
+    }
+
+    /**
+     * 点击会话列表时的回调
+     * @param conversation
+     */
+    @Override
+    public void onListItemClicked(EMConversation conversation) {
+
     }
 }
