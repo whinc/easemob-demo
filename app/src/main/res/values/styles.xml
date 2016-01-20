@@ -3,6 +3,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="toolbarStyle">@style/Basic.toolbarStyle</item>
+        <item name="titleBarCenterTextStyle">@style/Basic.titleBarCenterTextStyle</item>
+        <item name="toolbarNavigationButtonStyle">@style/Basic.toolbarNavigationButtonStyle</item>
+        <item name="actionOverflowButtonStyle">@style/Basic.actionOverflowButtonStyle</item>
     </style>
 
     <style name="AppTheme.FullScreen">
@@ -10,4 +14,28 @@
         <item name="android:windowActionBar">@null</item>
     </style>
 
+    <!--样式定义-->
+    <style name="Basic"/>
+    <style name="Basic.toolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/black</item>
+        <item name="titleTextAppearance">@style/Basic.titleBarTitleTextStyle</item>
+        <item name="subtitleTextAppearance">@style/Basic.titleBarCenterTextStyle</item>
+        <item name="android:minHeight">@dimen/action_bar_size</item>
+        <item name="android:paddingLeft">5dp</item>
+    </style>
+
+    <style name="Basic.titleBarCenterTextStyle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="Basic.titleBarTitleTextStyle" parent="Basic.titleBarCenterTextStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="Basic.toolbarNavigationButtonStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:minWidth">32dp</item>
+    </style>
+    <style name="Basic.actionOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:background">@color/white</item>
+    </style>
 </resources>

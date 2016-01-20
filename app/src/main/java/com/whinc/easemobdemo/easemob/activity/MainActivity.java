@@ -2,29 +2,24 @@ package com.whinc.easemobdemo.easemob.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.easemob.chat.EMConversation;
 import com.easemob.easeui.EaseConstant;
-import com.easemob.easeui.ui.EaseChatFragment;
 import com.whinc.easemobdemo.BaseActivity;
 import com.whinc.easemobdemo.R;
 import com.whinc.easemobdemo.easemob.EMSdkManager;
-import com.whinc.easemobdemo.easemob.fragment.ChatFragment;
+import com.whinc.easemobdemo.easemob.widget.TitleBar;
 import com.whinc.easemobdemo.easemob.fragment.ConversationListFragment;
 
 public class MainActivity extends BaseActivity
         implements ConversationListFragment.EaseConversationListItemClickListener{
     private static final String TAG_CONVERSION_LIST_FRAGMENT = "ConversionListFragment";
-    private static final String TAG_CHAT_FRAGMENT = "ChatFragment";
-
-    private ConversationListFragment mConversationListFragment;
-    private EaseChatFragment mChatFragment;
 
     public static void start(@NonNull Context context) {
         Intent starter = new Intent(context, MainActivity.class);
@@ -36,11 +31,18 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
-        setSupportActionBar(toolbar);
+        TitleBar titleBar = (TitleBar) findViewById(R.id.main_toolbar);
+        titleBar.setCenterTitle(R.string.title_message);
+        titleBar.inflateMenu(R.menu.menu_main);
+        titleBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                return onOptionsItemSelected(item);
+            }
+        });
 
         // 初始化会话列表
-        startConversationListFragment();
+        initConversationListFragment();
     }
 
     @Override
@@ -62,35 +64,20 @@ public class MainActivity extends BaseActivity
             EMSdkManager.getInstance().logout();
             LoginActivity.start(this);
             return true;
+        } else if (id == R.id.action_friend) {
+            Toast.makeText(this, "Unopened function!", Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void startConversationListFragment() {
-        FragmentManager fm = getSupportFragmentManager();
-        int id = R.id.conversation_fragment_container;
-        mConversationListFragment = findFragmentByTag(TAG_CONVERSION_LIST_FRAGMENT);
-        if (mConversationListFragment == null) {
-            mConversationListFragment = ConversationListFragment.newInstance();
-            mConversationListFragment.setConversationListItemClickListener(this);
-            addFragment(mConversationListFragment, id, TAG_CONVERSION_LIST_FRAGMENT);
+    private void initConversationListFragment() {
+        ConversationListFragment fragment = findFragmentByTag(TAG_CONVERSION_LIST_FRAGMENT);
+        if (fragment == null) {
+            fragment = ConversationListFragment.newInstance();
+            fragment.setConversationListItemClickListener(this);
+            addFragment(fragment, R.id.fragment_container, TAG_CONVERSION_LIST_FRAGMENT);
         }
-        hideFragment(mChatFragment);
-        showFragment(mConversationListFragment);
-    }
-
-    private void startChatFragment(int chatType, String userId) {
-        FragmentManager fm = getSupportFragmentManager();
-        int id = R.id.conversation_fragment_container;
-        mChatFragment = findFragmentByTag(TAG_CHAT_FRAGMENT);
-        if (mChatFragment == null) {
-            mChatFragment = ChatFragment.newInstance(chatType, userId);
-            addFragment(mChatFragment, id, TAG_CHAT_FRAGMENT);
-        }
-
-        showFragment(mChatFragment);
-        hideFragment(mConversationListFragment);
     }
 
     /**
@@ -101,7 +88,7 @@ public class MainActivity extends BaseActivity
     public void onListItemClicked(EMConversation conversation) {
         switch (conversation.getType()) {
             case Chat:
-                startChatFragment(EaseConstant.CHATTYPE_SINGLE, conversation.getUserName());
+                ChatActivity.start(this, EaseConstant.CHATTYPE_SINGLE, conversation.getUserName());
                 break;
             default:
                 break;

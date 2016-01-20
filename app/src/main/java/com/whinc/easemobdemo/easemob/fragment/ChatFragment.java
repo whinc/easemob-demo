@@ -19,4 +19,10 @@ public class ChatFragment extends EaseChatFragment {
         fragment.setArguments(args);
         return fragment;
     }
+
+    @Override
+    protected void setUpView() {
+        super.setUpView();
+        hideTitleBar();
+    }
 }

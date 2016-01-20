@@ -78,7 +78,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             @Override
             public void onSuccess() {
                 Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "登陆聊天服务器成功！");
                 PreferenceUtils.saveLoginInfo(username, password);
                 MainActivity.start(LoginActivity.this);
             }
@@ -90,7 +89,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
             @Override
             public void onError(int code, String message) {
-                Log.d(TAG, "登陆聊天服务器失败！");
+                Toast.makeText(LoginActivity.this, "Login Failed!", Toast.LENGTH_SHORT).show();
             }
         });
     }
