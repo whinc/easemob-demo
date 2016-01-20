@@ -1,4 +1,4 @@
-package com.whinc.easemobdemo.fragment;
+package com.whinc.easemobdemo.easemob.fragment;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,24 +12,21 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by Administrator on 2016/1/19.
  */
-public class ConversationFragment extends EaseConversationListFragment {
-    private static final String TAG = "ConversationFragment";
+public class ConversationListFragment extends EaseConversationListFragment {
+    private static final String TAG = "ConversationListFragment";
 
-    public static ConversationFragment newInstance() {
+    public static ConversationListFragment newInstance() {
         Bundle args = new Bundle();
         
-        ConversationFragment fragment = new ConversationFragment();
+        ConversationListFragment fragment = new ConversationListFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public ConversationFragment() {
-        hideTitleBar();
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         EventBus.getDefault().register(this);
     }
 
@@ -40,7 +37,7 @@ public class ConversationFragment extends EaseConversationListFragment {
     }
 
     public void onEventMainThread(EMMessage message) {
-        Log.i(TAG, "new message:" + message);
+        Log.i(TAG, message.toString());
         refresh();
     }
 }

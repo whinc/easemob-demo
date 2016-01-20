@@ -1,4 +1,4 @@
-package com.whinc.easemobdemo.activity;
+package com.whinc.easemobdemo.easemob.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
