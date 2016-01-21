@@ -1,20 +1,5 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="toolbarStyle">@style/Basic.toolbarStyle</item>
-        <item name="titleBarCenterTextStyle">@style/Basic.titleBarCenterTextStyle</item>
-        <item name="toolbarNavigationButtonStyle">@style/Basic.toolbarNavigationButtonStyle</item>
-        <item name="actionOverflowButtonStyle">@style/Basic.actionOverflowButtonStyle</item>
-        <item name="actionOverflowMenuStyle">@style/Basic.actionOverflowMenuStyle</item>
-    </style>
-
-    <style name="AppTheme.FullScreen">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBar">@null</item>
-    </style>
-
     <!--样式定义-->
     <style name="Basic"/>
     <style name="Basic.toolbarStyle" parent="Widget.AppCompat.Toolbar">
