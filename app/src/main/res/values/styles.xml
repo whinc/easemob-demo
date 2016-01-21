@@ -8,6 +8,7 @@
         <item name="subtitleTextAppearance">@style/Basic.titleBarCenterTextStyle</item>
         <item name="android:minHeight">@dimen/action_bar_size</item>
         <item name="android:paddingLeft">5dp</item>
+        <item name="titleMargins">0dp</item>
     </style>
 
     <style name="Basic.titleBarCenterTextStyle" parent="TextAppearance.AppCompat.Title">

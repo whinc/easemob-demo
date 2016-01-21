@@ -24,4 +24,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':easeui')
     compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'com.github.whinc:tiny-log:0.1'
 }

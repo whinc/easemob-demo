@@ -1,6 +1,7 @@
 package com.whinc.easemobdemo.easemob;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
@@ -9,13 +10,14 @@ import android.util.Log;
 import com.easemob.EMCallBack;
 import com.easemob.EMEventListener;
 import com.easemob.EMNotifierEvent;
-import com.easemob.EMNotifierEvent.Event;
 import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.easeui.controller.EaseUI;
+import com.easemob.easeui.domain.EaseUser;
 import com.whinc.easemobdemo.BuildConfig;
+import com.whinc.easemobdemo.R;
 import com.whinc.easemobdemo.easemob.utils.SystemUtils;
 
 import java.lang.reflect.InvocationHandler;
@@ -33,6 +35,8 @@ public class EMSdkManager implements EMSdk, EMEventListener{
     private static EMSdk sEMSdk = new EMSdkManager().newProxy();
 	private Context mAppContext;
 	private Handler mUiHandler = new Handler(Looper.getMainLooper());
+
+    private String mUserName;
 
 	public static EMSdk getInstance() {
 		return sEMSdk;
@@ -78,6 +82,12 @@ public class EMSdkManager implements EMSdk, EMEventListener{
 
         // 注册事件监听
         EMChatManager.getInstance().registerEventListener(this);
+
+        // 设置用户头像的外观形状
+        EaseUI.getInstance().setEaseUIAvatar(appContext, 0, Color.WHITE, 2, 1);
+
+        // 设置用户头像和昵称，这些会显示在会话和聊天界面
+        EaseUI.getInstance().setUserProfileProvider(createUserProfileProvider());
     }
 
     @Override
@@ -92,13 +102,14 @@ public class EMSdkManager implements EMSdk, EMEventListener{
     }
 
     @Override
-	public void login(String username, String password, final EMCallBack callBack) {
+	public void login(final String username, String password, final EMCallBack callBack) {
 		EMChatManager.getInstance().login(username, password, new EMCallBack() {
             @Override
             public void onSuccess() {
                 mUiHandler.post(new Runnable() {
                     @Override
                     public void run() {
+                        mUserName = username;
                         onLoginSuccess();
                         callBack.onSuccess();
                     }
@@ -122,7 +133,12 @@ public class EMSdkManager implements EMSdk, EMEventListener{
         EMChatManager.getInstance().logout();
     }
 
-	private void onLoginSuccess() {
+    @Override
+    public String getUserName() {
+        return mUserName;
+    }
+
+    private void onLoginSuccess() {
 		EMGroupManager.getInstance().loadAllGroups();
 		EMChatManager.getInstance().loadAllConversations();
 	}
@@ -155,4 +171,20 @@ public class EMSdkManager implements EMSdk, EMEventListener{
         }
     }
 
+    // 创建用户信息提供者
+    private EaseUI.EaseUserProfileProvider createUserProfileProvider() {
+        return new EaseUI.EaseUserProfileProvider() {
+            @Override
+            public EaseUser getUser(String username) {
+                EaseUser user = new EaseUser(username);
+                user.setNick(username);
+                if (username.equals(mUserName)) {   // 当前用户
+                    user.setAvatar(String.valueOf(R.drawable.ic_user_avatar));
+                } else {        // 对方用户
+                    user.setAvatar(String.valueOf(R.drawable.ic_user_avatar2));
+                }
+                return user;
+            }
+        };
+    }
 }

@@ -14,4 +14,5 @@ public interface EMSdk {
     void init(@NonNull Context context);
     void login(String username, String password, EMCallBack callBack);
     void logout();
+    String getUserName();
 }

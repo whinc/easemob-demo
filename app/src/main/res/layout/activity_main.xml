@@ -10,8 +10,6 @@
         android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/action_bar_size"
-        app:navigationIcon="@drawable/ic_menu_back"
-        app:titleMargins="0dp"
         />
     <FrameLayout
         android:id="@+id/fragment_container"
