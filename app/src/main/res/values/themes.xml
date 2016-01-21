@@ -4,10 +4,12 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="toolbarStyle">@style/Basic.toolbarStyle</item>
-        <item name="titleBarCenterTextStyle">@style/Basic.titleBarCenterTextStyle</item>
         <item name="toolbarNavigationButtonStyle">@style/Basic.toolbarNavigationButtonStyle</item>
         <item name="actionOverflowButtonStyle">@style/Basic.actionOverflowButtonStyle</item>
         <item name="actionOverflowMenuStyle">@style/Basic.actionOverflowMenuStyle</item>
+
+        <!--自定义属性-->
+        <item name="titleBarCenterTextStyle">@style/Basic.titleBarCenterTextStyle</item>
     </style>
 
     <style name="AppTheme.FullScreen">
