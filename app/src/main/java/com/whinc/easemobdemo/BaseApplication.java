@@ -9,6 +9,16 @@ import com.whinc.easemobdemo.easemob.EMSdkManager;
  */
 public class BaseApplication extends Application{
 
+    public static boolean isAutoLogin() {
+        return sAutoLogin;
+    }
+
+    public static void setAutoLogin(boolean autoLogin) {
+        sAutoLogin = autoLogin;
+    }
+
+    private static boolean sAutoLogin = true;
+
     @Override
     public void onCreate() {
         super.onCreate();

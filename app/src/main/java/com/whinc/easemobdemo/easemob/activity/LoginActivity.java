@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 
 import com.easemob.EMCallBack;
 import com.whinc.easemobdemo.BaseActivity;
+import com.whinc.easemobdemo.BaseApplication;
 import com.whinc.easemobdemo.R;
 import com.whinc.easemobdemo.easemob.EMSdkManager;
 import com.whinc.easemobdemo.easemob.utils.PreferenceUtils;
@@ -39,6 +39,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
         mUsernameEdt.setText(PreferenceUtils.getUsername());
         mPasswordEdt.setText(PreferenceUtils.getPassword());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (BaseApplication.isAutoLogin()) {
+            login(mUsernameEdt.getText().toString(), mPasswordEdt.getText().toString());
+        }
     }
 
     @Override
@@ -80,6 +88,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                 PreferenceUtils.saveLoginInfo(username, password);
                 MainActivity.start(LoginActivity.this);
+
+                BaseApplication.setAutoLogin(false);
             }
 
             @Override

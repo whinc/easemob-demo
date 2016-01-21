@@ -7,6 +7,7 @@
         <item name="titleBarCenterTextStyle">@style/Basic.titleBarCenterTextStyle</item>
         <item name="toolbarNavigationButtonStyle">@style/Basic.toolbarNavigationButtonStyle</item>
         <item name="actionOverflowButtonStyle">@style/Basic.actionOverflowButtonStyle</item>
+        <item name="actionOverflowMenuStyle">@style/Basic.actionOverflowMenuStyle</item>
     </style>
 
     <style name="AppTheme.FullScreen">
@@ -36,6 +37,17 @@
         <item name="android:minWidth">32dp</item>
     </style>
     <style name="Basic.actionOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
-        <item name="android:background">@color/white</item>
+        <item name="android:src">@drawable/ic_menu_overflow</item>
+    </style>
+
+    <style name="Basic.TextAppearance" parent="TextAppearance.AppCompat"/>
+    <style name="Basic.TextAppearance.White">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Basic.actionOverflowMenuStyle" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">@color/white</item>
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownHorizontalOffset">0dp</item>
     </style>
 </resources>
