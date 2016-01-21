@@ -8,12 +8,9 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.easemob.EMCallBack;
-import com.easemob.EMEventListener;
-import com.easemob.EMNotifierEvent;
 import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
-import com.easemob.chat.EMMessage;
 import com.easemob.easeui.controller.EaseUI;
 import com.easemob.easeui.domain.EaseUser;
 import com.whinc.easemobdemo.BuildConfig;
@@ -24,12 +21,10 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import de.greenrobot.event.EventBus;
-
 /**
  * Created by Administrator on 2016/1/19.
  */
-public class EMSdkManager implements EMSdk, EMEventListener{
+public class EMSdkManager implements EMSdk{
 	private static final String TAG = "EMSdkManager";
 
     private static EMSdk sEMSdk = new EMSdkManager().newProxy();
@@ -77,11 +72,11 @@ public class EMSdkManager implements EMSdk, EMEventListener{
 		// 开启SDK日志输出
         EMChat.getInstance().setDebugMode(BuildConfig.DEBUG);
 
+        // 注册事件监听
+//        EMChatManager.getInstance().registerEventListener(this);
+
         // 初始化 EaseUI
         EaseUI.getInstance().init(appContext);
-
-        // 注册事件监听
-        EMChatManager.getInstance().registerEventListener(this);
 
         // 设置用户头像的外观形状
         EaseUI.getInstance().setEaseUIAvatar(appContext, 0, Color.WHITE, 2, 1);
@@ -142,16 +137,6 @@ public class EMSdkManager implements EMSdk, EMEventListener{
 		EMGroupManager.getInstance().loadAllGroups();
 		EMChatManager.getInstance().loadAllConversations();
 	}
-
-    @Override
-    public void onEvent(EMNotifierEvent event) {
-        switch (event.getEvent()) {
-            case EventNewMessage:
-                EMMessage message = (EMMessage) event.getData();
-                EventBus.getDefault().post(message);
-                break;
-        }
-    }
 
     private static class EMSdkInvocationHandler implements InvocationHandler {
 

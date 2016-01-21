@@ -1,13 +1,13 @@
 package com.whinc.easemobdemo.easemob.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.whinc.easemobdemo.BaseActivity;
 import com.whinc.easemobdemo.R;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

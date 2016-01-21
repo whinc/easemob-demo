@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -81,6 +82,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     }
 
     private void login(final String username, final String password) {
+        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) return;
+
         Toast.makeText(LoginActivity.this, "Login...", Toast.LENGTH_SHORT).show();
         EMSdkManager.getInstance().login(username, password, new EMCallBack() {//回调
             @Override
