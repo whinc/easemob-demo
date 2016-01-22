@@ -972,5 +972,5 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         EaseCustomChatRowProvider onSetCustomChatRowProvider();
     }
     
-    
+
 }
