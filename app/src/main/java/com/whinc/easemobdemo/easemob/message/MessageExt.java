@@ -60,17 +60,13 @@ public enum MessageExt {
     @NonNull
     public static MessageExt parse(EMMessage message) {
         MessageExt messageExt = NONE;
-        // 获取消息类型的json字符串
-        String type = message.getStringAttribute(TYPE, NONE.name()).trim().toUpperCase();
-        try {
+        if (message != null) {
+            // 获取消息类型的json字符串
+            String type = message.getStringAttribute(TYPE, NONE.name()).trim().toUpperCase();
             // 确定消息类型
             messageExt = MessageExt.valueOf(type);
-            if (messageExt != NONE) {
-                // 初始化消息内容
-                messageExt.setMessage(message);
-            }
-        } catch (IllegalArgumentException e) {
-            Log.e(TAG, "", e);
+            // 初始化消息内容
+            messageExt.setMessage(message);
         }
         return messageExt;
     }
@@ -120,19 +116,17 @@ public enum MessageExt {
 
     private void setMessage(EMMessage message) {
         mMessage = message;
-        try {
-            id = Long.parseLong(message.getStringAttribute(ID));
-            title = message.getStringAttribute(TITLE);
-            picture = message.getStringAttribute(PICTURE);
-            content = message.getStringAttribute(CONTENT);
-        } catch (EaseMobException e) {
-            Log.e(TAG, "", e);
-        }
+        id = Long.parseLong(message.getStringAttribute(ID, "0"));
+        title = message.getStringAttribute(TITLE, "");
+        picture = message.getStringAttribute(PICTURE, "");
+        content = message.getStringAttribute(CONTENT, "");
+        nickname = message.getStringAttribute(NICKNAME, message.getUserName());
+        portrait = message.getStringAttribute(PORTRAIT, "");
     }
 
     @Override
     public String toString() {
-        return String.format("{type:%s(%d), id:%d, title:%s, picture:%s, content:%s}",
-                name(), type, id, title, picture, content);
+        return String.format("{type:%s(%d), id:%d, title:%s, picture:%s, content:%s, nickname:%s, portrait:%s}",
+                name(), type, id, title, picture, content, nickname, portrait);
     }
 }
