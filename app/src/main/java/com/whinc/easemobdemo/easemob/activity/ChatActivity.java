@@ -8,10 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.easemob.easeui.EaseConstant;
+import com.easemob.easeui.controller.EaseUI;
 import com.whinc.easemobdemo.BaseActivity;
 import com.whinc.easemobdemo.R;
-import com.whinc.easemobdemo.easemob.widget.TitleBar;
 import com.whinc.easemobdemo.easemob.fragment.ChatFragment;
+import com.whinc.easemobdemo.easemob.widget.TitleBar;
 
 public class ChatActivity extends BaseActivity{
     private static final String TAG = "ChatActivity";
@@ -37,8 +38,11 @@ public class ChatActivity extends BaseActivity{
         String userId = getIntent().getStringExtra(EXTRA_USER_ID);
         int chatType = getIntent().getIntExtra(EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
 
+        // 根据用户昵称
+        String nickName = EaseUI.getInstance().getUserProfileProvider().getUser(userId).getNick();
+
         TitleBar titleBar = (TitleBar) findViewById(R.id.chat_toolbar);
-        titleBar.setCenterTitle(userId);
+        titleBar.setCenterTitle(nickName);
         titleBar.setTitle(R.string.title_message);
         titleBar.showBackIcon(true);
 
