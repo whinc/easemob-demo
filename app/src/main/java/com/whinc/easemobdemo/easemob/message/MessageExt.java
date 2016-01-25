@@ -21,13 +21,17 @@ public enum MessageExt {
     private static final String TITLE = "title";
     private static final String PICTURE = "picture";
     private static final String CONTENT = "content";
+    private static final String NICKNAME = "nickname";
+    private static final String PORTRAIT = "portrait";
+
     private int type;
     private long id;
     private String title;
     private String picture;
     private String content;
+    private String nickname;
+    private String portrait;
     private EMMessage mMessage;
-
     MessageExt(int type) {
         this.type = type;
     }
@@ -80,6 +84,14 @@ public enum MessageExt {
             }
         }
         return result;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public String getPortrait() {
+        return portrait;
     }
 
     public long getId() {

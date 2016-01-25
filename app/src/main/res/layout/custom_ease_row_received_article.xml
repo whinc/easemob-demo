@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:paddingTop="13dp" >
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="13dp"
+    >
 
     <TextView
         android:id="@+id/timestamp"
-        style="@style/chat_text_date_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:minWidth="47dp"
+        android:minHeight="24dp"
+        style="@style/Custom.Chat.Text.TimeStampStyle"
+        tools:text="15:30"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_chat_activity" >
+        style="@style/Custom.Chat.RowStyle"
+        >
 
         <com.easemob.easeui.widget.EaseImageView
             android:id="@+id/iv_userhead"
-            android:layout_width="@dimen/size_avatar"
-            android:layout_height="@dimen/size_avatar"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="@dimen/margin_chat_activity"
-            android:src="@drawable/ic_user_avatar"
+            style="@style/Custom.Chat.AvatarStyle"
             />
 
         <RelativeLayout
@@ -33,19 +38,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_userid"
-            android:layout_marginLeft="@dimen/margin_chat_activity"
             android:layout_toRightOf="@id/iv_userhead"
-            android:background="@drawable/ease_chatfrom_bg"
+            style="@style/Custom.Chat.BubbleStyle.Receiver"
             >
 
             <!--不同类型消息差异体现在这里，其他地方的View最好不要变-->
             <RelativeLayout
-                android:layout_width="236dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/message_received_margin_top"
-                android:paddingBottom="@dimen/message_received_margin_bottom"
-                android:paddingLeft="@dimen/message_received_margin_left"
-                android:paddingRight="@dimen/message_received_margin_right"
+                style="@style/Custom.Chat.Article"
                 >
                 <TextView
                     android:id="@+id/article_title_txt"
@@ -58,7 +59,7 @@
                     />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_below="@id/article_title_txt"
@@ -79,7 +80,8 @@
                         android:textSize="12sp"
                         android:textColor="@color/gray_font"
                         android:lineSpacingExtra="2dp"
-                        tools:text="digest of article"
+                        android:maxWidth="@dimen/message_chat_article_text_max_width"
+                        tools:text="digest of aarticlearticlearticlearticlearticlearticlearticlearticlearticlearticlerticle"
                         />
                 </LinearLayout>
 
@@ -88,13 +90,14 @@
 
         <TextView
             android:id="@+id/tv_userid"
-            style="@style/chat_text_name_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/chat_nick_margin_left"
-            android:textSize="@dimen/chat_nick_text_size"
             android:layout_toRightOf="@id/iv_userhead"
-            android:visibility="gone" />
+            android:visibility="gone"
+            style="@style/Custom.Chat.Text.UserNameStyle.Receiver"
+            tools:visibility="gone"
+            tools:text="username"
+            />
     </RelativeLayout>
 
 </LinearLayout>

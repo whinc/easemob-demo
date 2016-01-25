@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--自定义 Dimens -->
+<resources>
+    <dimen name="message_chat_bubble_receiver_padding_left">7dp</dimen>
+    <dimen name="message_chat_bubble_receiver_padding_right">2dp</dimen>
+    <dimen name="message_chat_bubble_receiver_padding_top">2dp</dimen>
+    <dimen name="message_chat_bubble_receiver_padding_bottom">2dp</dimen>
+    <dimen name="message_chat_bubble_receiver_margin_left">2dp</dimen>
+
+    <dimen name="message_chat_bubble_sender_padding_left">2dp</dimen>
+    <dimen name="message_chat_bubble_sender_padding_right">7dp</dimen>
+    <dimen name="message_chat_bubble_sender_padding_top">2dp</dimen>
+    <dimen name="message_chat_bubble_sender_padding_bottom">2dp</dimen>
+    <dimen name="message_chat_bubble_sender_margin_right">5dp</dimen>
+
+    <dimen name="message_chat_bubble_margin_bottom">24dp</dimen>
+    <dimen name="message_chat_bubble_max_width">236dp</dimen>
+
+    <dimen name="message_chat_name_receiver_margin_left">20dp</dimen>
+    <dimen name="message_chat_name_sender_margin_right">20dp</dimen>
+    <dimen name="message_chat_text_time_stamp_margin_bottom">6dp</dimen>
+
+    <dimen name="message_chat_row_margin_left">10dp</dimen>
+    <dimen name="message_chat_row_margin_right">10dp</dimen>
+
+    <dimen name="message_chat_avatar_width">40dp</dimen>
+    <dimen name="message_chat_avatar_height">40dp</dimen>
+
+</resources>

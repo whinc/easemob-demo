@@ -36,7 +36,7 @@ public class ChatRowArticle extends ChatRowExt {
 
     @Override
     protected void onInflatView() {
-        inflater.inflate(R.layout.ease_row_received_article, this);
+        inflater.inflate(R.layout.custom_ease_row_received_article, this);
     }
 
     @Override

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Custom"/>
+    <style name="Custom.Chat"/>
+    <style name="Custom.Chat.Text"/>
+
+    <!--聊天时间戳样式-->
+    <style name="Custom.Chat.Text.TimeStampStyle">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/custom_timestample_bkg</item>
+        <item name="android:layout_marginBottom">@dimen/message_chat_text_time_stamp_margin_bottom</item>
+    </style>
+
+    <!--消息上方的用户名样式-->
+    <style name="Custom.Chat.Text.UserNameStyle" parent="chat_text_name_style">
+        <item name="android:textSize">@dimen/chat_nick_text_size</item>
+    </style>
+    <style name="Custom.Chat.Text.UserNameStyle.Receiver">
+        <item name="android:layout_marginLeft">@dimen/message_chat_name_receiver_margin_left</item>
+    </style>
+    <style name="Custom.Chat.Text.UserNameStyle.Sender">
+        <item name="android:layout_marginRight">@dimen/message_chat_name_sender_margin_right</item>
+    </style>
+
+    <!--消息气泡样式-->
+    <style name="Custom.Chat.BubbleStyle">
+        <item name="android:maxWidth">@dimen/message_chat_bubble_max_width</item>
+    </style>
+    <style name="Custom.Chat.BubbleStyle.Receiver">
+        <item name="android:paddingLeft">@dimen/message_chat_bubble_receiver_padding_left</item>
+        <item name="android:paddingRight">@dimen/message_chat_bubble_receiver_padding_right</item>
+        <item name="android:paddingTop">@dimen/message_chat_bubble_receiver_padding_top</item>
+        <item name="android:paddingBottom">@dimen/message_chat_bubble_receiver_padding_bottom</item>
+        <item name="android:layout_marginLeft">@dimen/message_chat_bubble_receiver_margin_left</item>
+        <item name="android:background">@drawable/custom_chat_receiver_bkg</item>
+    </style>
+    <style name="Custom.Chat.BubbleStyle.Sender">
+        <item name="android:paddingLeft">@dimen/message_chat_bubble_sender_padding_left</item>
+        <item name="android:paddingRight">@dimen/message_chat_bubble_sender_padding_right</item>
+        <item name="android:paddingTop">@dimen/message_chat_bubble_sender_padding_top</item>
+        <item name="android:paddingBottom">@dimen/message_chat_bubble_sender_padding_bottom</item>
+        <item name="android:layout_marginRight">@dimen/message_chat_bubble_sender_margin_right</item>
+        <item name="android:background">@drawable/custom_chat_sender_bkg</item>
+    </style>
+
+    <!--消息行（包括头像、气泡）样式-->
+    <style name="Custom.Chat.RowStyle">
+        <item name="android:paddingLeft">@dimen/message_chat_row_margin_left</item>
+        <item name="android:paddingRight">@dimen/message_chat_row_margin_right</item>
+    </style>
+
+    <!--用户头像样式-->
+    <style name="Custom.Chat.AvatarStyle">
+        <item name="android:layout_width">@dimen/message_chat_avatar_width</item>
+        <item name="android:layout_height">@dimen/message_chat_avatar_height</item>
+        <item name="ease_shape_type">rectangle</item>
+        <item name="ease_radius">2dp</item>
+        <item name="android:src">@drawable/ease_default_avatar</item>
+    </style>
+
+
+    <!--文本消息样式-->
+    <style name="Custom.Chat.Text.Message">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#FF000000</item>
+        <item name="android:paddingRight">15.5dp</item>
+        <item name="android:paddingLeft">15.5dp</item>
+        <item name="android:paddingTop">11dp</item>
+        <item name="android:paddingBottom">11dp</item>
+    </style>
+    <style name="Custom.Chat.Text.Message.Receiver">
+    </style>
+    <style name="Custom.Chat.Text.Message.Sender">
+    </style>
+
+    <!--自定义图文消息样式-->
+    <style name="Custom.Chat.Article">
+        <item name="android:paddingLeft">13dp</item>
+        <item name="android:paddingRight">13dp</item>
+        <item name="android:paddingBottom">11dp</item>
+        <item name="android:paddingTop">11dp</item>
+    </style>
+</resources>

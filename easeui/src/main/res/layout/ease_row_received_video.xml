@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
@@ -8,23 +10,24 @@
 
     <TextView
         android:id="@+id/timestamp"
-        style="@style/chat_text_date_style"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        style="@style/Custom.Chat.Text.TimeStampStyle"
+        tools:text="15:30"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_chat_activity" >
+        style="@style/Custom.Chat.RowStyle"
+        >
 
         <com.easemob.easeui.widget.EaseImageView
             android:id="@+id/iv_userhead"
-            android:layout_width="@dimen/size_avatar"
-            android:layout_height="@dimen/size_avatar"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="@dimen/margin_chat_activity"
-            android:src="@drawable/ease_default_avatar" />
+            style="@style/Custom.Chat.AvatarStyle"
+            />
 
         <TextView
             android:id="@+id/tv_userid"
@@ -41,9 +44,9 @@
             android:layout_width="130dp"
             android:layout_height="145dp"
             android:layout_below="@+id/tv_userid"
-            android:layout_marginLeft="@dimen/margin_chat_activity"
             android:layout_toRightOf="@id/iv_userhead"
-            android:background="@drawable/ease_chatfrom_bg" >
+            style="@style/Custom.Chat.BubbleStyle.Receiver"
+            >
 
             <ImageView
                 android:id="@+id/chatting_content_iv"

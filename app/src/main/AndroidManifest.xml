@@ -31,9 +31,13 @@
         <!-- 设置环信应用的appkey -->
         <meta-data
             android:name="EASEMOB_APPKEY"
-            android:value="whinc#easemobdemo" />
+            android:value="qiaohuxxkj#qiaoqiao" />
         <!-- 声明sdk所需的service SDK核心功能 -->
         <service android:name="com.easemob.chat.EMChatService" />
+
+        <!--声明环信的Activity-->
+        <activity android:name="com.easemob.easeui.ui.EaseShowBigImageActivity"/>
+        <activity android:name="com.easemob.easeui.ui.EaseShowVideoActivity"/>
         <!-- 环信配置 end -->
 
         <activity

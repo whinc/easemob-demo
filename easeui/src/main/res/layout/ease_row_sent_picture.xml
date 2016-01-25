@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
@@ -8,9 +10,11 @@
 
     <TextView
         android:id="@+id/timestamp"
-        style="@style/chat_text_date_style"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        style="@style/Custom.Chat.Text.TimeStampStyle"
+        tools:text="15:30"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,20 +23,18 @@
 
         <com.easemob.easeui.widget.EaseImageView
             android:id="@+id/iv_userhead"
-            android:layout_width="@dimen/size_avatar"
-            android:layout_height="@dimen/size_avatar"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="@dimen/margin_chat_activity"
-            android:src="@drawable/ease_default_avatar"/>
+            style="@style/Custom.Chat.AvatarStyle"
+            />
 
         <RelativeLayout
             android:id="@+id/bubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_chat_activity"
-            android:background="@drawable/ease_chatto_bg"
-            android:layout_toLeftOf="@id/iv_userhead" >
+            android:layout_toLeftOf="@id/iv_userhead"
+            style="@style/Custom.Chat.BubbleStyle.Sender"
+            >
 
             <ImageView
                 android:id="@+id/image"
