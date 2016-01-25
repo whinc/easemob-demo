@@ -11,14 +11,13 @@ import android.util.Log;
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMGroupManager;
-import com.easemob.chat.EMMessage;
 import com.easemob.easeui.controller.EaseUI;
 import com.easemob.easeui.domain.EaseUser;
 import com.whinc.easemobdemo.BuildConfig;
 import com.whinc.easemobdemo.R;
 import com.whinc.easemobdemo.easemob.message.MessageExt;
+import com.whinc.easemobdemo.easemob.utils.EMSdkHelper;
 import com.whinc.easemobdemo.easemob.utils.SystemUtils;
 
 import java.lang.reflect.InvocationHandler;
@@ -170,22 +169,17 @@ public class EMSdkManager implements EMSdk{
                     user.setNick(username);
                     user.setAvatar(String.valueOf(R.drawable.ic_user_avatar));
                 } else {        // 对方用户
-                    EMConversation conversation = EMChatManager.getInstance().getConversation(username);
-                    EMMessage lastMessage = conversation.getLastMessage();  // 获取最后一条会话消息
-                    MessageExt messageExt = MessageExt.parse(lastMessage);  // 解析出昵称和头像
+                    // 如果用户之前的昵称为空或是默认昵称，则重新获取用户昵称和头像
+                    MessageExt messageExt = EMSdkHelper.getMessageExtByFromUserName(username);
                     String nickname = messageExt.getNickname();
                     String portrait = messageExt.getPortrait();
                     if (!TextUtils.isEmpty(nickname) ) {
-                        if (!nickname.equals(user.getNick())) {
-                            user.setNick(nickname);
-                        }
+                        user.setNick(nickname);
                     } else {
                         user.setNick(username);
                     }
                     if (!TextUtils.isEmpty(portrait) ) {
-                        if (!portrait.equals(user.getAvatar())) {
-                            user.setAvatar(portrait);
-                        }
+                        user.setAvatar(portrait);
                     } else {
                         user.setAvatar(String.valueOf(R.drawable.ic_user_avatar2));
                     }
