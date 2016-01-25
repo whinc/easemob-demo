@@ -9,6 +9,9 @@ import com.easemob.chat.EMMessage;
 import com.easemob.easeui.EaseConstant;
 import com.easemob.easeui.ui.EaseChatFragment;
 import com.easemob.easeui.widget.chatrow.EaseCustomChatRowProvider;
+import com.whinc.easemobdemo.easemob.EMSdkManager;
+import com.whinc.easemobdemo.easemob.message.MessageExt;
+import com.whinc.easemobdemo.easemob.utils.UserInfoUtils;
 import com.whinc.easemobdemo.easemob.widget.chatrow.CustomChatRowProvider;
 
 import java.lang.reflect.Field;
@@ -33,6 +36,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setChatFragmentListener(this);      // 设置会话监听器
+        EMSdkManager.getInstance().autoCheckAndConnect();   // 自动断线重连
     }
 
     @Override
@@ -67,9 +71,20 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
         }
     }
 
+    /**
+     * 设置消息扩展字段（每个发送的消息都会经过该方法）
+     * @param message
+     */
     @Override
     public void onSetMessageAttributes(EMMessage message) {
-
+        message.setAttribute(MessageExt.NICKNAME, UserInfoUtils.getNickname());
+        // 尝试解析为资源ID（长整型），解析成功说明用户头像使用的是本地的默认头像，这种情况不应该发送用户的头像
+        // 如果解析失败，可以认为用户有网络头像，改情况下发送用户的头像给对方
+        try {
+            Long.parseLong(UserInfoUtils.getAvatar());
+        } catch (NumberFormatException e) {
+            message.setAttribute(MessageExt.PORTRAIT, UserInfoUtils.getAvatar());
+        }
     }
 
     @Override

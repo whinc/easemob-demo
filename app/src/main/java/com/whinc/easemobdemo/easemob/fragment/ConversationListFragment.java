@@ -1,14 +1,13 @@
 package com.whinc.easemobdemo.easemob.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.easemob.EMEventListener;
 import com.easemob.EMNotifierEvent;
 import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMMessage;
 import com.easemob.easeui.ui.EaseConversationListFragment;
+import com.whinc.easemobdemo.easemob.EMSdkManager;
 
 /**
  * Created by Administrator on 2016/1/19.
@@ -22,6 +21,12 @@ public class ConversationListFragment extends EaseConversationListFragment imple
         ConversationListFragment fragment = new ConversationListFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EMSdkManager.getInstance().autoCheckAndConnect();   // 自动断线重连
     }
 
     @Override

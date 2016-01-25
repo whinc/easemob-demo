@@ -21,8 +21,8 @@ public enum MessageExt {
     private static final String TITLE = "title";
     private static final String PICTURE = "picture";
     private static final String CONTENT = "content";
-    private static final String NICKNAME = "nickname";
-    private static final String PORTRAIT = "portrait";
+    public static final String NICKNAME = "nickname";
+    public static final String PORTRAIT = "portrait";
 
     private int type;
     private long id;

@@ -14,5 +14,9 @@ public interface EMSdk {
     void init(@NonNull Context context);
     void login(String username, String password, EMCallBack callBack);
     void logout();
-    String getUserName();
+
+    /**
+     * 自动检查是否断线，如果断线自动重连
+     */
+    void autoCheckAndConnect();
 }

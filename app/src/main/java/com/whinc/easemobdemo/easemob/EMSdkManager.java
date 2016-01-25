@@ -15,10 +15,10 @@ import com.easemob.chat.EMGroupManager;
 import com.easemob.easeui.controller.EaseUI;
 import com.easemob.easeui.domain.EaseUser;
 import com.whinc.easemobdemo.BuildConfig;
-import com.whinc.easemobdemo.R;
 import com.whinc.easemobdemo.easemob.message.MessageExt;
 import com.whinc.easemobdemo.easemob.utils.EMSdkHelper;
 import com.whinc.easemobdemo.easemob.utils.SystemUtils;
+import com.whinc.easemobdemo.easemob.utils.UserInfoUtils;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -35,12 +35,17 @@ public class EMSdkManager implements EMSdk{
 	private Handler mUiHandler = new Handler(Looper.getMainLooper());
 
     private String mUserName;
+    private String mPassword;
+
+	private EMSdkManager() { }
 
 	public static EMSdk getInstance() {
 		return sEMSdk;
 	}
 
-	private EMSdkManager() { }
+    public String getPassword() {
+        return mPassword;
+    }
 
     private EMSdk newProxy() {
         return (EMSdk) Proxy.newProxyInstance(
@@ -75,9 +80,6 @@ public class EMSdkManager implements EMSdk{
 		// 开启SDK日志输出
         EMChat.getInstance().setDebugMode(BuildConfig.DEBUG);
 
-        // 注册事件监听
-//        EMChatManager.getInstance().registerEventListener(this);
-
         // 初始化 EaseUI
         EaseUI.getInstance().init(appContext);
 
@@ -100,7 +102,7 @@ public class EMSdkManager implements EMSdk{
     }
 
     @Override
-	public void login(final String username, String password, final EMCallBack callBack) {
+	public void login(final String username, final String password, final EMCallBack callBack) {
 		EMChatManager.getInstance().login(username, password, new EMCallBack() {
             @Override
             public void onSuccess() {
@@ -108,6 +110,7 @@ public class EMSdkManager implements EMSdk{
                     @Override
                     public void run() {
                         mUserName = username;
+                        mPassword = password;
                         onLoginSuccess();
                         callBack.onSuccess();
                     }
@@ -132,6 +135,30 @@ public class EMSdkManager implements EMSdk{
     }
 
     @Override
+    public void autoCheckAndConnect() {
+        boolean connected = EMChatManager.getInstance().isConnected();
+        Log.i(TAG, "IsConnected:" + connected);
+        if (!connected) {
+            EMChatManager.getInstance().logout();
+            EMChatManager.getInstance().login(getUserName(), getPassword(), new EMCallBack() {
+                @Override
+                public void onSuccess() {
+                    Log.d(TAG, "reconnect successfully");
+                }
+
+                @Override
+                public void onError(int i, String s) {
+                    Log.d(TAG, "reconnect failed, code:" + i + ", reason:" + s);
+                }
+
+                @Override
+                public void onProgress(int i, String s) {
+
+                }
+            });
+        }
+    }
+
     public String getUserName() {
         return mUserName;
     }
@@ -140,6 +167,36 @@ public class EMSdkManager implements EMSdk{
 		EMGroupManager.getInstance().loadAllGroups();
 		EMChatManager.getInstance().loadAllConversations();
 	}
+
+    // 创建用户信息提供者
+    private EaseUI.EaseUserProfileProvider createUserProfileProvider() {
+        return new EaseUI.EaseUserProfileProvider() {
+            @Override
+            public EaseUser getUser(String username) {
+                EaseUser user = new EaseUser(username);
+                if (username.equals(mUserName)) {   // 当前用户
+                    user.setNick(username);
+                    user.setAvatar(UserInfoUtils.getAvatar());
+                } else {        // 对方用户
+                    // 如果用户之前的昵称为空或是默认昵称，则重新获取用户昵称和头像
+                    MessageExt messageExt = EMSdkHelper.getMessageExtByFromUserName(username);
+                    String nickname = messageExt.getNickname();
+                    String portrait = messageExt.getPortrait();
+                    if (!TextUtils.isEmpty(nickname) ) {
+                        user.setNick(nickname);
+                    } else {
+                        user.setNick(username);
+                    }
+                    if (!TextUtils.isEmpty(portrait) ) {
+                        user.setAvatar(portrait);
+                    } else {
+                        user.setAvatar(UserInfoUtils.getDefaultAvatar());
+                    }
+                }
+                return user;
+            }
+        };
+    }
 
     private static class EMSdkInvocationHandler implements InvocationHandler {
 
@@ -157,35 +214,5 @@ public class EMSdkManager implements EMSdk{
             }
             return method.invoke(mEMSdkManager, args);
         }
-    }
-
-    // 创建用户信息提供者
-    private EaseUI.EaseUserProfileProvider createUserProfileProvider() {
-        return new EaseUI.EaseUserProfileProvider() {
-            @Override
-            public EaseUser getUser(String username) {
-                EaseUser user = new EaseUser(username);
-                if (username.equals(mUserName)) {   // 当前用户
-                    user.setNick(username);
-                    user.setAvatar(String.valueOf(R.drawable.ic_user_avatar));
-                } else {        // 对方用户
-                    // 如果用户之前的昵称为空或是默认昵称，则重新获取用户昵称和头像
-                    MessageExt messageExt = EMSdkHelper.getMessageExtByFromUserName(username);
-                    String nickname = messageExt.getNickname();
-                    String portrait = messageExt.getPortrait();
-                    if (!TextUtils.isEmpty(nickname) ) {
-                        user.setNick(nickname);
-                    } else {
-                        user.setNick(username);
-                    }
-                    if (!TextUtils.isEmpty(portrait) ) {
-                        user.setAvatar(portrait);
-                    } else {
-                        user.setAvatar(String.valueOf(R.drawable.ic_user_avatar2));
-                    }
-                }
-                return user;
-            }
-        };
     }
 }
