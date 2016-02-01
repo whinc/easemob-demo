@@ -41,6 +41,9 @@ public class CustomChatRowProvider implements EaseCustomChatRowProvider {
             case HINT:
                 chatRow = new ChatRow1(mContext, messageExt, position, adapter);
                 break;
+            case SUIT:
+                chatRow = new ChatRow2(mContext, messageExt, position, adapter);
+                break;
             default:
                 break;
         }

@@ -13,25 +13,50 @@ import com.whinc.tinylog.Log;
  * Email:xiaohui_hubei@163.com</p>
  */
 public enum MessageExt {
-    NONE(0), PROLONGATION(1), PAIRWITH(2), HINT(3);
+    NONE(0),
+    PROLONGATION(1),
+    PAIRWITH(2),
+    HINT(3),
+    SUIT(4),
+    PRODUCT(5),
+    STYLE(6),
+    ;
 
+    /* 消息扩展字段名字 */
+    public static final String NICKNAME = "nickname";
+    public static final String PORTRAIT = "portrait";
+    public static final String ONLINE = "online";
+    public static final String OFFLINE = "offline";
+    public static final String COMFORT = "comfort";
+    public static final String GLAMOUR = "glamour";
+    public static final String FLAUNT = "flaunt";
     private static final String TAG = "MessageExt";
     private static final String TYPE = "type";
     private static final String ID = "id";
     private static final String TITLE = "title";
     private static final String PICTURE = "picture";
     private static final String CONTENT = "content";
-    public static final String NICKNAME = "nickname";
-    public static final String PORTRAIT = "portrait";
-
-    private int type;
+    private static final String HIGH = "high";
+    private static final String WHITE = "white";
+    private static final String THIN = "thin";
+    /* 每种消息只有其中部分字段有值 */
+    private int type;           // 消息类型
     private long id;
     private String title;
     private String picture;
-    private String content;
-    private String nickname;
-    private String portrait;
+    private String content;     // 文字内容（描述、介绍）
+    private String nickname;    // 消息发送者昵称
+    private String portrait;    // 消息发送者头像地址
+    private float online;       // 线上价格
+    private float offline;      // 线下价格
+    private float comfort;      // 舒适度
+    private float glamour;      // 潮流值（魅力值）
+    private float flaunt;       // 性价比
+    private float high;         // 高
+    private float white;        // 白
+    private float thin;         // 瘦
     private EMMessage mMessage;
+
     MessageExt(int type) {
         this.type = type;
     }
@@ -82,6 +107,38 @@ public enum MessageExt {
         return result;
     }
 
+    public float getOnline() {
+        return online;
+    }
+
+    public float getOffline() {
+        return offline;
+    }
+
+    public float getComfort() {
+        return comfort;
+    }
+
+    public float getGlamour() {
+        return glamour;
+    }
+
+    public float getFlaunt() {
+        return flaunt;
+    }
+
+    public float getHigh() {
+        return high;
+    }
+
+    public float getWhite() {
+        return white;
+    }
+
+    public float getThin() {
+        return thin;
+    }
+
     public String getNickname() {
         return nickname;
     }
@@ -116,12 +173,27 @@ public enum MessageExt {
 
     private void setMessage(EMMessage message) {
         mMessage = message;
-        id = Long.parseLong(message.getStringAttribute(ID, "0"));
+        nickname = message.getStringAttribute(NICKNAME, message.getUserName());
+        portrait = message.getStringAttribute(PORTRAIT, "");
+
+        id = Long.valueOf(message.getStringAttribute(ID, "0"));
         title = message.getStringAttribute(TITLE, "");
         picture = message.getStringAttribute(PICTURE, "");
         content = message.getStringAttribute(CONTENT, "");
-        nickname = message.getStringAttribute(NICKNAME, message.getUserName());
-        portrait = message.getStringAttribute(PORTRAIT, "");
+
+        if (this == SUIT || this == PRODUCT) {
+            online = Float.valueOf(message.getStringAttribute(ONLINE, "0"));
+            offline = Float.valueOf(message.getStringAttribute(OFFLINE, "0"));
+            glamour = Float.valueOf(message.getStringAttribute(GLAMOUR, "0"));
+            if (this == SUIT) {
+                comfort = Float.valueOf(message.getStringAttribute(COMFORT, "0"));
+                flaunt = Float.valueOf(message.getStringAttribute(FLAUNT, "0"));
+            } else if (this == PRODUCT) {
+                high = Float.valueOf(message.getStringAttribute(HIGH, "0"));
+                white = Float.valueOf(message.getStringAttribute(WHITE, "0"));
+                thin = Float.valueOf(message.getStringAttribute(THIN, "0"));
+            }
+        }
     }
 
     @Override
