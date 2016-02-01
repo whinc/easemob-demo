@@ -25,4 +25,5 @@ dependencies {
     compile project(':easeui')
     //    compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.github.whinc:tiny-log:0.1'
+    testCompile 'junit:junit:4.12'
 }

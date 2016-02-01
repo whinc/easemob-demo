@@ -13,9 +13,10 @@ import com.whinc.easemobdemo.easemob.message.MessageExt;
 import com.whinc.tinylog.Log;
 
 /**
+ * 消息包含：标题、图片和文字摘要
  * Created by Administrator on 2016/1/22.
  */
-public class ChatRowArticle extends ChatRowExt {
+public class ChatRow1 extends BaseChatRow {
     private static final String TAG = "ChatRowArticle";
     private TextView mTitleTxt;         // 文章标题
     private ImageView mThumbnailImg;    // 文章缩略图
@@ -26,7 +27,7 @@ public class ChatRowArticle extends ChatRowExt {
     private final BaseAdapter mAdapter;
     private final int mPosition;
 
-    public ChatRowArticle(Context context, MessageExt messageExt, int position, BaseAdapter adapter) {
+    public ChatRow1(Context context, MessageExt messageExt, int position, BaseAdapter adapter) {
         super(context, messageExt, position, adapter);
         mContext = context;
         mMessageExt = messageExt;

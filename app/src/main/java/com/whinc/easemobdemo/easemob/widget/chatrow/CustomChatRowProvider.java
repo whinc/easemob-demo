@@ -39,7 +39,7 @@ public class CustomChatRowProvider implements EaseCustomChatRowProvider {
             case PROLONGATION:
             case PAIRWITH:
             case HINT:
-                chatRow = new ChatRowArticle(mContext, messageExt, position, adapter);
+                chatRow = new ChatRow1(mContext, messageExt, position, adapter);
                 break;
             default:
                 break;

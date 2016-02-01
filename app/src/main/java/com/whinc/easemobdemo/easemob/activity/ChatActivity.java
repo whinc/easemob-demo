@@ -71,6 +71,11 @@ public class ChatActivity extends BaseActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     private void initChatFragment(int chatType, String userId) {
         ChatFragment fragment = findFragmentByTag(TAG_CHAT_FRAGMENT);
         if (fragment == null) {
