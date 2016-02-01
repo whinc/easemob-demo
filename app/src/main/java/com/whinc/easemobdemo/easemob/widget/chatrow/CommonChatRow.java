@@ -9,28 +9,28 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.whinc.easemobdemo.R;
-import com.whinc.easemobdemo.easemob.message.MessageExt;
+import com.whinc.easemobdemo.easemob.message.CommonMessage;
 import com.whinc.tinylog.Log;
 
 /**
- * 消息包含：标题、图片和文字摘要
+ * 该消息样式适用于：Prolongation、PairWith、Hint消息
  * Created by Administrator on 2016/1/22.
  */
-public class ChatRow1 extends BaseChatRow {
+public class CommonChatRow extends BaseChatRow {
     private static final String TAG = "ChatRowArticle";
     private TextView mTitleTxt;         // 文章标题
     private ImageView mThumbnailImg;    // 文章缩略图
     private TextView mDigestTxt;        // 文章摘要
 
     private final Context mContext;
-    private final MessageExt mMessageExt;
+    private final CommonMessage mMessage;
     private final BaseAdapter mAdapter;
     private final int mPosition;
 
-    public ChatRow1(Context context, MessageExt messageExt, int position, BaseAdapter adapter) {
-        super(context, messageExt, position, adapter);
+    public CommonChatRow(Context context, CommonMessage message, int position, BaseAdapter adapter) {
+        super(context, message, position, adapter);
         mContext = context;
-        mMessageExt = messageExt;
+        mMessage = message;
         mAdapter = adapter;
         mPosition = position;
     }
@@ -54,17 +54,17 @@ public class ChatRow1 extends BaseChatRow {
 
     @Override
     protected void onSetUpView() {
-        mTitleTxt.setText(mMessageExt.getTitle());
-        if (!TextUtils.isEmpty(mMessageExt.getPicture())) {
+        mTitleTxt.setText(mMessage.getTitle());
+        if (!TextUtils.isEmpty(mMessage.getPicture())) {
             Glide.with(mContext)
-                    .load(mMessageExt.getPicture())
+                    .load(mMessage.getPicture())
                     .placeholder(R.drawable.ic_launcher)
                     .into(mThumbnailImg);
             mThumbnailImg.setVisibility(View.VISIBLE);
         } else {
             mThumbnailImg.setVisibility(View.GONE);     // 没有略缩图就不显示
         }
-        mDigestTxt.setText(mMessageExt.getContent());
+        mDigestTxt.setText(mMessage.getContent());
     }
 
     /**
@@ -72,6 +72,6 @@ public class ChatRow1 extends BaseChatRow {
      */
     @Override
     protected void onBubbleClick() {
-        Log.i(TAG, "Click message:" + mMessageExt.toString());
+        Log.i(TAG, "Click message:" + mMessage.toString());
     }
 }

@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  * <p>Created by whinc on 2016/1/26.
  * Email:xiaohui_hubei@163.com</p>
  */
-public class MessageExtTest {
+public class MessageTypeTest {
 
     @Before
     public void setUp() throws Exception {
@@ -29,8 +29,8 @@ public class MessageExtTest {
 
     @Test
     public void testValueOf() throws Exception {
-        Assert.assertEquals(MessageExt.valueOf(MessageExt.NONE.name()), MessageExt.NONE);
-        assertThat(MessageExt.NONE, is(MessageExt.NONE));
-        assertThat(MessageExt.PROLONGATION, is(MessageExt.valueOf("PROLONGATION1")));
+        Assert.assertEquals(MessageType.valueOf(MessageType.NONE.name()), MessageType.NONE);
+        assertThat(MessageType.NONE, is(MessageType.NONE));
+        assertThat(MessageType.PROLONGATION, is(MessageType.valueOf("PROLONGATION1")));
     }
 }

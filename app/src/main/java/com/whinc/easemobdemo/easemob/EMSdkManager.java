@@ -15,7 +15,8 @@ import com.easemob.chat.EMGroupManager;
 import com.easemob.easeui.controller.EaseUI;
 import com.easemob.easeui.domain.EaseUser;
 import com.whinc.easemobdemo.BuildConfig;
-import com.whinc.easemobdemo.easemob.message.MessageExt;
+import com.whinc.easemobdemo.easemob.message.CustomMessage;
+import com.whinc.easemobdemo.easemob.message.MessageType;
 import com.whinc.easemobdemo.easemob.utils.EMSdkHelper;
 import com.whinc.easemobdemo.easemob.utils.SystemUtils;
 import com.whinc.easemobdemo.easemob.utils.UserInfoUtils;
@@ -179,9 +180,9 @@ public class EMSdkManager implements EMSdk{
                     user.setAvatar(UserInfoUtils.getAvatar());
                 } else {        // 对方用户
                     // 如果用户之前的昵称为空或是默认昵称，则重新获取用户昵称和头像
-                    MessageExt messageExt = EMSdkHelper.getMessageExtByFromUserName(username);
-                    String nickname = messageExt.getNickname();
-                    String portrait = messageExt.getPortrait();
+                    CustomMessage customMessage = EMSdkHelper.getMessageExtByFromUserName(username);
+                    String nickname = customMessage.getNickName();
+                    String portrait = customMessage.getPortrait();
                     if (!TextUtils.isEmpty(nickname) ) {
                         user.setNick(nickname);
                     } else {

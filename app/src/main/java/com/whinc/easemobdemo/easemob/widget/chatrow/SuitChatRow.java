@@ -9,25 +9,25 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.whinc.easemobdemo.R;
-import com.whinc.easemobdemo.easemob.message.MessageExt;
+import com.whinc.easemobdemo.easemob.message.SuitMessage;
 
 /**
- * ${END}
+ * 搭配消息
  * <p/>
  * <p>Created by whinc on 2016/2/1.
  * Email:xiaohui_hubei@163.com</p>
  */
-public class ChatRow2 extends BaseChatRow {
+public class SuitChatRow extends BaseChatRow {
     private ImageView mThumbnailImg;
     private TextView mIntroductionTxt;
     private TextView mOnlinePriceTxt;
     private TextView mOfflinePriceTxt;
 
-    private final MessageExt mMessageExt;
+    private final SuitMessage mMessage;
 
-    public ChatRow2(Context context, MessageExt messageExt, int position, BaseAdapter adapter) {
-        super(context, messageExt, position, adapter);
-        mMessageExt = messageExt;
+    public SuitChatRow(Context context, SuitMessage message, int position, BaseAdapter adapter) {
+        super(context, message, position, adapter);
+        mMessage = message;
     }
 
     @Override
@@ -51,11 +51,11 @@ public class ChatRow2 extends BaseChatRow {
 
     @Override
     protected void onSetUpView() {
-        Glide.with(getContext()).load(mMessageExt.getPicture()).into(mThumbnailImg);
-        mIntroductionTxt.setText(mMessageExt.getContent());
-        String onlinePrice = getResources().getString(R.string.params_online_price, mMessageExt.getOnline());
+        Glide.with(getContext()).load(mMessage.getPicture()).into(mThumbnailImg);
+        mIntroductionTxt.setText(mMessage.getContent());
+        String onlinePrice = getResources().getString(R.string.params_online_price, mMessage.getOnline());
         mOnlinePriceTxt.setText(onlinePrice);
-        String offlinePrice = getResources().getString(R.string.params_offline_price, mMessageExt.getOffline());
+        String offlinePrice = getResources().getString(R.string.params_offline_price, mMessage.getOffline());
         mOfflinePriceTxt.setText(offlinePrice);
     }
 
