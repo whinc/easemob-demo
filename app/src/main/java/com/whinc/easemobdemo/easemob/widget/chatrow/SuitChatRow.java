@@ -32,14 +32,14 @@ public class SuitChatRow extends BaseChatRow {
 
     @Override
     protected void onInflatView() {
-        inflater.inflate(R.layout.custom_ease_row_received_type2, this);
+        inflater.inflate(R.layout.custom_ease_row_received_suit, this);
     }
 
     @Override
     protected void onFindViewById() {
         mThumbnailImg = (ImageView) findViewById(R.id.thumbnail_img);
-        mIntroductionTxt = (TextView) findViewById(R.id.introduction_txt);
-        mOnlinePriceTxt = (TextView) findViewById(R.id.online_price_txt);
+        mIntroductionTxt = (TextView) findViewById(R.id.content_txt);
+        mOnlinePriceTxt = (TextView) findViewById(R.id.glamour_label_txt);
         mOfflinePriceTxt = (TextView) findViewById(R.id.offline_price_txt);
         mOfflinePriceTxt.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);    // 文字添加删除线
     }

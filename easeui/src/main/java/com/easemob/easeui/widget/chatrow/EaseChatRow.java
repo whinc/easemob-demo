@@ -96,6 +96,14 @@ public abstract class EaseChatRow extends LinearLayout {
         setClickListener();
     }
 
+    protected void onSetupUserAvatar(ImageView userAvatarView) {
+        EaseUserUtils.setUserAvatar(context, message.getFrom(), userAvatarView);
+    }
+
+    protected void onSetupNickName(TextView usernickView) {
+        EaseUserUtils.setUserNick(message.getFrom(), usernickView);
+    }
+
     private void setUpBaseView() {
         // 设置用户昵称头像，bubble背景等
         TextView timestamp = (TextView) findViewById(R.id.timestamp);
@@ -120,8 +128,8 @@ public abstract class EaseChatRow extends LinearLayout {
             //发送方不显示nick
 //            UserUtils.setUserNick(EMChatManager.getInstance().getCurrentUser(), usernickView);
         }else{
-            EaseUserUtils.setUserAvatar(context, message.getFrom(), userAvatarView);
-            EaseUserUtils.setUserNick(message.getFrom(), usernickView);
+            onSetupUserAvatar(userAvatarView);
+            onSetupNickName(usernickView);
         }
         
         if(deliveredView != null){

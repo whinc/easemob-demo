@@ -11,7 +11,9 @@ import com.whinc.easemobdemo.easemob.message.CustomMessage;
 import com.whinc.easemobdemo.easemob.message.HintMessage;
 import com.whinc.easemobdemo.easemob.message.MessageType;
 import com.whinc.easemobdemo.easemob.message.PairWithMessage;
+import com.whinc.easemobdemo.easemob.message.ProductMessage;
 import com.whinc.easemobdemo.easemob.message.ProlongationMessage;
+import com.whinc.easemobdemo.easemob.message.StyleMessage;
 import com.whinc.easemobdemo.easemob.message.SuitMessage;
 
 /**
@@ -50,8 +52,14 @@ public class CustomChatRowProvider implements EaseCustomChatRowProvider {
             case HINT:
                 chatRow = new CommonChatRow(mContext, new HintMessage(message), position, adapter);
                 break;
+            case STYLE:
+                chatRow = new CommonChatRow(mContext, new StyleMessage(message), position, adapter);
+                break;
             case SUIT:
                 chatRow = new SuitChatRow(mContext, new SuitMessage(message), position, adapter);
+                break;
+            case PRODUCT:
+                chatRow = new ProductChatRow(mContext, new ProductMessage(message), position, adapter);
                 break;
             default:
                 break;

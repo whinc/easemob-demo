@@ -15,7 +15,4 @@
     <string name="title_activity_chat">ChatActivity</string>
     <string name="title_message">Message</string>
     <string name="title_p2p_chat">XXX Friend</string>
-
-    <string name="params_online_price">￥%1$.1f</string>
-    <string name="params_offline_price">￥%1$.1f</string>
 </resources>

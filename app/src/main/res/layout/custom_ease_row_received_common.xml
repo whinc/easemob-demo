@@ -43,56 +43,49 @@
             >
 
             <!--不同类型消息差异体现在这里，其他地方的View最好不要变-->
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                style="@style/Custom.Chat.Type2"
+                style="@style/Custom.Chat.Common"
                 >
-                <ImageView
-                    android:id="@+id/thumbnail_img"
-                    android:layout_width="231dp"
-                    android:layout_height="231dp"
-                    android:scaleType="centerInside"
-                    tools:src="@drawable/ease_default_image"
-                    />
                 <TextView
-                    android:id="@+id/introduction_txt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="13dp"
-                    android:paddingRight="13dp"
-                    style="@style/Custom.Chat.Type2.Text.Introduction"
-                    tools:text="XXXXX\nYYYY"
-                    />
-
-                <RelativeLayout
+                    android:id="@+id/article_title_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginBottom="11dp"
+                    android:textColor="@color/black_qq"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="10dp"
+                    tools:text="XXXX店为您推荐"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/article_title_txt"
                     >
-                    <TextView
-                        android:id="@+id/online_price_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/Custom.Chat.Type2.Text.OnlinePrice"
-                        tools:text="@string/params_online_price"
+
+                    <ImageView
+                        android:id="@+id/article_picture_img"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_gravity="center_vertical"
+                        tools:src="@drawable/ic_user_avatar"
                         />
                     <TextView
-                        android:id="@+id/offline_price_txt"
+                        android:id="@+id/article_content_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/online_price_txt"
-                        android:layout_alignBottom="@id/online_price_txt"
-                        android:layout_marginLeft="2dp"
-                        style="@style/Custom.Chat.Type2.Text.OfflinePrice"
-                        tools:text="@string/params_offline_price"
+                        android:textSize="12sp"
+                        android:textColor="@color/gray_font"
+                        android:lineSpacingExtra="2dp"
+                        android:maxWidth="@dimen/message_chat_article_text_max_width"
+                        tools:text="digest of aarticlearticlearticlearticlearticlearticlearticlearticlearticlearticlerticle"
                         />
-                </RelativeLayout>
-            </LinearLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
         </RelativeLayout>
 
         <TextView

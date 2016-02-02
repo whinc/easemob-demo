@@ -37,7 +37,7 @@ public class CommonChatRow extends BaseChatRow {
 
     @Override
     protected void onInflatView() {
-        inflater.inflate(R.layout.custom_ease_row_received_type1, this);
+        inflater.inflate(R.layout.custom_ease_row_received_common, this);
     }
 
     @Override

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="params_online_price">￥%1$.1f</string>
+    <string name="params_offline_price">￥%1$.1f</string>
+
+    <string name="label_glamour">颜值</string>
+    <string name="label_white">显白</string>
+    <string name="label_thin">显瘦</string>
+    <string name="label_height">显高</string>
+</resources>
