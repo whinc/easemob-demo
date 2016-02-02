@@ -60,7 +60,6 @@
         <item name="android:src">@drawable/ease_default_avatar</item>
     </style>
 
-
     <!--文本消息样式-->
     <style name="Custom.Chat.Text.Message">
         <item name="android:textSize">15sp</item>
@@ -75,50 +74,4 @@
     <style name="Custom.Chat.Text.Message.Sender">
     </style>
 
-    <!--自定义消息(CommonMessage及其子类) 样式-->
-    <style name="Custom.Chat.Common">
-        <item name="android:paddingLeft">13dp</item>
-        <item name="android:paddingRight">13dp</item>
-        <item name="android:paddingBottom">11dp</item>
-        <item name="android:paddingTop">11dp</item>
-    </style>
-
-    <!--自定义消息(SuitMessage) 样式-->
-    <style name="Custom.Chat.Suit"/>
-    <style name="Custom.Chat.Suit.Text"/>
-    <style name="Custom.Chat.Suit.Text.Content">
-        <item name="android:textSize">12sp</item>
-        <item name="android:lineSpacingExtra">2dp</item>
-        <item name="android:textColor">@color/gray_font</item>
-    </style>
-    <style name="Custom.Chat.Suit.Text.OnlinePrice">
-        <item name="android:textColor">@color/red_qq</item>
-        <item name="android:textSize">15sp</item>
-    </style>
-    <style name="Custom.Chat.Suit.Text.OfflinePrice">
-        <item name="android:textColor">@color/gray_font</item>
-        <item name="android:textSize">11sp</item>
-    </style>
-
-    <!--自定义消息(ProductMessage) 样式-->
-    <style name="Custom.Chat.Product"/>
-    <style name="Custom.Chat.Product.Text"/>
-    <style name="Custom.Chat.Product.Text.Content" parent="Custom.Chat.Suit.Text.Content"/>
-    <style name="Custom.Chat.Product.Text.Style1">
-        <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/black_qq</item>
-    </style>
-    <style name="Custom.Chat.Product.Text.Style2">
-        <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/red_qq</item>
-    </style>
-    <style name="Custom.Chat.Product.Text.Style3">
-        <item name="android:textSize">10sp</item>
-        <item name="android:textColor">@color/gray_font</item>
-    </style>
-    <style name="Custom.Chat.Product.Text.Style4">
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textStyle">bold</item>
-    </style>
 </resources>

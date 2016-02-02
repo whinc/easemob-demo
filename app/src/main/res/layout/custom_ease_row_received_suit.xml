@@ -67,34 +67,27 @@
                     tools:text="XXXXX\nYYYY"
                     />
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginBottom="11dp"
-                    >
-                    <TextView
-                        android:id="@+id/glamour_label_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/Custom.Chat.Suit.Text.OnlinePrice"
-                        tools:text="@string/params_online_price"
-                        />
-                    <TextView
-                        android:id="@+id/offline_price_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/glamour_label_txt"
-                        android:layout_alignBottom="@id/glamour_label_txt"
-                        android:layout_marginLeft="2dp"
-                        style="@style/Custom.Chat.Suit.Text.OfflinePrice"
-                        tools:text="@string/params_offline_price"
-                        />
-                </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
 
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/bubble"
+            android:layout_alignRight="@id/bubble"
+            android:translationX="15dp"
+            android:translationY="-5dp"
+            android:background="@drawable/bkg_medal"
+            >
+            <TextView
+                android:id="@+id/medal_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/Custom.Chat.Product.Text.Style4"
+                tools:text="@string/label_white"
+                />
+        </FrameLayout>
         <TextView
             android:id="@+id/tv_userid"
             android:layout_width="wrap_content"
