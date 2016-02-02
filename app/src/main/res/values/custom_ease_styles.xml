@@ -16,13 +16,13 @@
         <item name="android:lineSpacingExtra">2dp</item>
         <item name="android:textColor">@color/gray_font</item>
     </style>
-    <style name="Custom.Chat.Suit.Text.OnlinePrice">
-        <item name="android:textColor">@color/red_qq</item>
-        <item name="android:textSize">15sp</item>
-    </style>
-    <style name="Custom.Chat.Suit.Text.OfflinePrice">
+    <style name="Custom.Chat.Suit.Text.Style1">
+        <item name="android:textSize">10sp</item>
         <item name="android:textColor">@color/gray_font</item>
-        <item name="android:textSize">11sp</item>
+    </style>
+    <style name="Custom.Chat.Suit.Text.Keyword">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/gray_font</item>
     </style>
 
     <!--自定义消息(ProductMessage) 样式-->
@@ -45,5 +45,9 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Custom.Chat.Product.Text.Style5">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/gray_font</item>
     </style>
 </resources>

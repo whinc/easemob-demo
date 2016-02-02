@@ -25,5 +25,6 @@ dependencies {
     compile project(':easeui')
     compile 'com.github.whinc:tiny-log:0.1'
     compile 'com.github.whinc:ratingbar:1.1.1'
+    compile 'com.zhy:flowlayout-lib:1.0.0'
     testCompile 'junit:junit:4.12'
 }

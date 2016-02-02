@@ -7,4 +7,6 @@
     <string name="label_white">显白</string>
     <string name="label_thin">显瘦</string>
     <string name="label_height">显高</string>
+
+    <string name="label_matching_rate">匹配度</string>
 </resources>

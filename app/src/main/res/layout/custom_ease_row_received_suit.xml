@@ -47,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingBottom="11dp"
                 style="@style/Custom.Chat.Suit"
                 >
                 <ImageView
@@ -63,31 +64,51 @@
                     android:layout_marginTop="10dp"
                     android:paddingLeft="13dp"
                     android:paddingRight="13dp"
+                    android:layout_marginBottom="10dp"
                     style="@style/Custom.Chat.Suit.Text.Content"
                     tools:text="XXXXX\nYYYY"
                     />
-
+                <com.zhy.view.flowlayout.TagFlowLayout
+                    android:id="@+id/keyword_flowLayout"
+                    app:max_select="-1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="13dp"
+                    android:paddingRight="13dp"
+                    tools:layout_height="20dp"
+                    tools:background="@color/red_qq"
+                    />
             </LinearLayout>
         </RelativeLayout>
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/bubble"
             android:layout_alignRight="@id/bubble"
             android:translationX="15dp"
             android:translationY="-5dp"
+            android:orientation="vertical"
             android:background="@drawable/bkg_medal"
+            android:gravity="center"
+            android:visibility="invisible"
+            tools:visibility="visible"
             >
             <TextView
-                android:id="@+id/medal_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_matching_rate"
+                style="@style/Custom.Chat.Suit.Text.Style1"
+                />
+            <TextView
+                android:id="@+id/comfort_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 style="@style/Custom.Chat.Product.Text.Style4"
-                tools:text="@string/label_white"
+                tools:text="94%"
                 />
-        </FrameLayout>
+        </LinearLayout>
         <TextView
             android:id="@+id/tv_userid"
             android:layout_width="wrap_content"
